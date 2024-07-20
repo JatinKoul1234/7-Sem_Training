@@ -1,0 +1,30 @@
+#include <iostream>
+#include <sstream>
+#include <algorithm>
+using namespace std;
+    
+int main() {
+    string input;
+    getline(cin, input);  // Read the entire input line
+    
+    replace(input.begin(), input.end(), ',', ' ');  // Replace commas with spaces
+    
+    stringstream ss(input);
+    int n1, n2, n3;
+    ss >> n1 >> n2 >> n3;
+    
+    // Find the second largest number
+    int  second_largest;
+    
+    if ((n1 >= n2 && n1 <= n3) || (n1 >= n3 && n1 <= n2)) {
+        second_largest = n1;
+    } else if ((n2 >= n1 && n2 <= n3) || (n2 >= n3 && n2 <= n1)) {
+        second_largest = n2;
+    } else {
+        second_largest = n3;
+    }
+    
+    cout << second_largest << endl;
+    
+    return 0;
+}
