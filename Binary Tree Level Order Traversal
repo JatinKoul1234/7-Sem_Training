@@ -1,0 +1,24 @@
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        d=deque([root])
+        levels=[[root.val]]
+        temp=deque()
+        while d:
+            node=d.popleft()
+            if node.left:
+                temp.append(node.left)
+            if node.right:
+                temp.append(node.right)
+            if not d:
+                if temp:
+                    levels.append([n.val for n in temp])
+                d=temp
+                temp=deque()
+        return levels
