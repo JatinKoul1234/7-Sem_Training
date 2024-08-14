@@ -1,0 +1,16 @@
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        freq={}
+        for i,char in enumerate(s):
+            freq[char]=i
+        stack=[]
+        visit=set()
+        for i in range(len(s)):
+            if s[i] in visit:
+                continue
+            while stack and s[i]<stack[-1] and i<freq.get(stack[-1],-1):
+                visit.remove(stack.pop())
+            visit.add(s[i])
+            stack.append(s[i])
+        return "".join(stack)
+            
